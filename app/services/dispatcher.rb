@@ -3,8 +3,8 @@ class Dispatcher
 	class << self
 		def dispatch msg = {}, ex = nil
 			Rails.logger.info "Hi i am sending the update!!!!!!!!!"
-			event = channel.direct("payment_reqs.update")
-			event.publish(msg.to_json)
+			event = channel.topic("payment_reqs")
+			event.publish(msg.to_json, routing_key: "payment_reqs.update")
 		end
 
 		def channel

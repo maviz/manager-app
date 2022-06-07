@@ -1,5 +1,4 @@
 class PaymentCreationHandler
-
 	attr_accessor :args
 
 	def initialize(args)
@@ -11,9 +10,6 @@ class PaymentCreationHandler
 	end
 
 	def save_record
-		Rails.logger.info "HERE I AM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-		Rails.logger.info "*"*200
-
 		pr = PaymentReq.new.tap do |pr|
 			pr.amount = args[:amount]
 			pr.description = args[:description]
