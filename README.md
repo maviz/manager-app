@@ -24,3 +24,24 @@ I am using the community docker image for RabbitMq with port forwarding via foll
 > Contractor app has a dispatcher to dispatch create payment request events to RabbitMQ server. Manager app has a Subscriber that subscribes to the channel to get event notifications for the update event on payment_request by Manage.
 
 > Manager app has a dipatcher to transmit update events and a subscriber to catch create events.
+
+
+
+
+
+>> Installation / Running Steps for Ubuntu
+ 
+1) Install docker
+
+2) run local instance of RabbitMQ server by command :: docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
+
+3) clone manager app :: git clone https://github.com/maviz/manager-app.git
+
+4) bundle install, rails db:setup, rails db:migrate and rails s
+
+5) clone contractor app :: git clone https://github.com/maviz/contractor-app.git
+
+6) bundle install && rails db:setup && rails db:migrate && rails s -p 3001 (diffrent port)
+
+create payment_request on contractor app, see logs and also can open rabbitMQ admin pannel, http://localhost:15672 , with [user: guest, password: guest] and see the message flow. Update a payment request publishes to a queue via direct strategy and create is published via fanout.
+
