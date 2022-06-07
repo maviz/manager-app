@@ -3,7 +3,7 @@ class PaymentReqsController < ApplicationController
 
   # GET /payment_reqs or /payment_reqs.json
   def index
-    @payment_reqs = PaymentReq.all
+    @payment_reqs = PaymentReq.order(created_at: :desc).all
   end
 
   # GET /payment_reqs/1 or /payment_reqs/1.json
