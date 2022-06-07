@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Payment reqs</h1>
+
+<div id="payment_reqs">
+  <% @payment_reqs.each do |payment_req| %>
+    <%= render payment_req %>
+    <p>
+      <%= link_to "Edit this payment req", edit_payment_req_path(payment_req) %>
+    </p>
+    <br>
+  <% end %>
+</div>
+

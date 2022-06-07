@@ -1,0 +1,42 @@
+<%= form_with(model: payment_req) do |form| %>
+  <% if payment_req.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(payment_req.errors.count, "error") %> prohibited this payment_req from being saved:</h2>
+
+      <ul>
+        <% payment_req.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= select_tag "payment_req[status]", raw("<option value='0'>pending</option><option value='1'>processed</option><option value='2'>rejected</option>") %>
+  </div>
+
+  <div>
+    <%= form.label :amount, style: "display: block" %>
+    <%= form.number_field :amount, disabled: true %>
+  </div>
+
+  <div>
+    <%= form.label :transaction_id, style: "display: block" %>
+    <%= form.text_field :transaction_id, disabled: true %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description, disabled: true %>
+  </div>
+
+  <div>
+    <%= form.label :currency, style: "display: block" %>
+    <%= form.text_field :currency, disabled: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
