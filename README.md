@@ -21,7 +21,7 @@ I am using the community docker image for RabbitMq with port forwarding via foll
 > When manager updates any payment_request, this is sent to the RabbitMQ server using the direct strategy with a routing key. This key is used for mapping with the queue. Contractor app has a subscription to the channel and it gets the message when Manager updates the payment_request. To have a link between payment_req on Contractor and Manager side, the payment request record on the manager side has an additional field called 'transaction_id' which save the hashed version of integer database id of the record. This helps in fetching the record for updation when a change event hits the contractor app.
 
 
-> Contractor app has a dispatcher to dispatch create payment request events to RabbitMQ server. Manager app has a Subscriber that subscribes to the channel to get event notifications for the update event on payment_request by Manage.
+> Contractor app has a dispatcher to dispatch create payment request events to RabbitMQ server. Manager app has a Subscriber that subscribes to the channel to get event notifications for the create event and Contractor app listens for update events.
 
 > Manager app has a dipatcher to transmit update events and a subscriber to catch create events.
 
